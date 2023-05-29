@@ -1,0 +1,316 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: AuctionPool1
+    network: matic
+    source:
+      address: "0x77BA374f64C78a6659FCeDB6695dC02fDC91776b"
+      abi: AuctionPool
+      startBlock: 40530561
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool2
+    network: matic
+    source:
+      address: "0xdFfbbabB3c2D4D7942a73d2FC37EF638b8661AF9"
+      abi: AuctionPool
+      startBlock: 40633921
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool3
+    network: matic
+    source:
+      address: "0xaa03D068340F5b9d8eeEC8A6c0f78F481Ff7F440"
+      abi: AuctionPool
+      startBlock: 40637507
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool4
+    network: matic
+    source:
+      address: "0x37dD0273d816E7517D905Ab04cae37C6D8a73c4C"
+      abi: AuctionPool
+      startBlock: 40637658
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool5
+    network: matic
+    source:
+      address: "0xe48AeE8acB4D6Ed340Fbb7EAc1D54FE913c7ba22"
+      abi: AuctionPool
+      startBlock: 40637755
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool6
+    network: matic
+    source:
+      address: "0x6300c1204a3aA0627Ea57786E248d2E6a3D609e0"
+      abi: AuctionPool
+      startBlock: 40637803
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool7
+    network: matic
+    source:
+      address: "0x1bd3ac5990C25B79b54E84859a4B453062BA94C1"
+      abi: AuctionPool
+      startBlock: 40637929
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool8
+    network: matic
+    source:
+      address: "0x13789A9C9B2aCfCBf40d87C9d8d94BD590005196"
+      abi: AuctionPool
+      startBlock: 40676247
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool9
+    network: matic
+    source:
+      address: "0xbc0659125Cac63aD800122181706Ba211243Ecd5"
+      abi: AuctionPool
+      startBlock: 40678256
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool10
+    network: matic
+    source:
+      address: "0x401E3787c07cB4c203d6B8813fAa6B91cF607cDd"
+      abi: AuctionPool
+      startBlock: 40934156
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool11
+    network: matic
+    source:
+      address: "0xb5DAD906c9feB9E54692696388578b44846df3Dc"
+      abi: AuctionPool
+      startBlock: 41332052
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts
+  - kind: ethereum
+    name: AuctionPool12
+    network: matic
+    source:
+      address: "0x2c4cDdd4a8F0Ae2eDdB92E5CB7DD32A0b03Bbcb9"
+      abi: AuctionPool
+      startBlock: 42290036
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+      abis:
+        - name: AuctionPool
+          file: ./abis/AuctionPool.json
+      eventHandlers:
+        - event: PlayerBid(indexed address,indexed uint256,uint256,indexed uint256,uint256,string,bytes32,bool,bool)
+          handler: handlePlayerBid
+        - event: RoundFinalized(indexed uint256,indexed uint256,indexed address,address,uint256)
+          handler: handleRoundFinalized
+        - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
+          handler: handleRankedRoundFinalized
+      file: ./src/auction-pool.ts

@@ -1,0 +1,208 @@
+{
+  "mumbai": {
+    "AuctionPool1": {
+      "address": "0x238EcB9eA2A379508C18835Cb73a263c5de53c19",
+      "startBlock": 28833112
+    },
+    "AuctionPool2": {
+      "address": "0x0eA6b357d59A3bd146Fc3c60A529A482CE2468e4",
+      "startBlock": 28835279
+    },
+    "AuctionPool3": {
+      "address": "0xA9eCa63b017425931AEA363f24543bc211906255",
+      "startBlock": 28839668
+    },
+    "AuctionPool4": {
+      "address": "0x1123424F0f25aDbf960EB37B37ce98300554F363",
+      "startBlock": 28853125
+    },
+    "AuctionPool5": {
+      "address": "0xcAF405abc1D4A7CF5258944A4fa0916782745912",
+      "startBlock": 28873142
+    },
+    "AuctionPool6": {
+      "address": "0x05eAc73d3e759f35F780b4a026A438495De438Ce",
+      "startBlock": 28892621
+    },
+    "AuctionPool7": {
+      "address": "0x027BA8B8266c724360Ea5ff9935a6b586952Bd4B",
+      "startBlock": 29024935
+    },
+    "AuctionPool8": {
+      "address": "0xfe2aB771945589826B37cF672d28f8E2aBe71D66",
+      "startBlock": 29077019
+    },
+    "AuctionPool9": {
+      "address": "0x5A63561dcb8E0C5cC03fAf16664Df4c5c9c6f152",
+      "startBlock": 29164914
+    },
+    "AuctionPool10": {
+      "address": "0x8C6330C25C1e37F80F95701583Cb52fef5cF3B15",
+      "startBlock": 29198432
+    },
+    "AuctionPool11": {
+      "address": "0x2b331177287B1c9541e268F0874c4E7c228e8c9F",
+      "startBlock": 29275625
+    },
+    "AuctionPool12": {
+      "address": "0x651317fe98ad16d6108d3ae85856495Ef3eE4D0a",
+      "startBlock": 29399639
+    },
+    "AuctionPool13": {
+      "address": "0x3E215580ff61802d9965f5bCeEfa732f913924A8",
+      "startBlock": 29499901
+    },
+    "AuctionPool14": {
+      "address": "0x66Ef0A58d41DE04ae3295CfF49614457dC0e1215",
+      "startBlock": 29537739
+    },
+    "AuctionPool15": {
+      "address": "0xcb92A2337A4f674191636EA8953e3Af9E0Bb10eF",
+      "startBlock": 29637039
+    },
+    "AuctionPool16": {
+      "address": "0x372FB6D93b91304693a4d77c74267f55b2644Da1",
+      "startBlock": 29676115
+    },
+    "AuctionPool17": {
+      "address": "0xc4Dc1582D25cF966920C67aD46502040a08DE3E3",
+      "startBlock": 29689934
+    },
+    "AuctionPool18": {
+      "address": "0x58E786eE04D6bd0c1A3869FC3149f3aF54C3d901",
+      "startBlock": 30259728
+    },
+    "AuctionPool19": {
+      "address": "0x00A8482695A9CFFe800A8E8A38BcE0e0E42375C6",
+      "startBlock": 30259777
+    },
+    "AuctionPool20": {
+      "address": "0x5EEB90e970D7278161b66868d72D403eAA56b5B8",
+      "startBlock": 30284798
+    },
+    "AuctionPool21": {
+      "address": "0xc6aD33c5002e747C45F2A41b084A88a550fB009b",
+      "startBlock": 30285007
+    },
+    "AuctionPool22": {
+      "address": "0xEF5C0e67dD95ff3B083db4843C3aE1d1D14A4F01",
+      "startBlock": 31027985
+    },
+    "AuctionPool23": {
+      "address": "0xc98e2c8D009Cf609813be55203aa7fb9361c17AB",
+      "startBlock": 31028106
+    },
+    "AuctionPool24": {
+      "address": "0xaB535f05CD5242e122Db0cD07ceBEFe62f79Bd78",
+      "startBlock": 31108009
+    },
+    "AuctionPool25": {
+      "address": "0x6D76EcC4129ec25782b8B86B2F6D1FE2985D2991",
+      "startBlock": 31151605
+    },
+    "AuctionPool26": {
+      "address": "0xde9c88AfCc07c6fb9dCD0d3687894155cA188Ab0",
+      "startBlock": 31304312
+    },
+    "AuctionPool27": {
+      "address": "0x72D8eEb71B5D8eb5a79B2c77Fbd138C3D699Fc28",
+      "startBlock": 31305249
+    },
+    "AuctionPool28": {
+      "address": "0xdF220d2fF4DB26fA39ccA1db6FE47e4cB9e291AD",
+      "startBlock": 31309631
+    },
+    "AuctionPool29": {
+      "address": "0x85D934F1c2d0D40640A5dB9e23B5cd55F81f8ce0",
+      "startBlock": 31383503
+    },
+    "AuctionPool30": {
+      "address": "0x9D7F9481561101bf43DAAe3d147c6dB6aAA3a8E8",
+      "startBlock": 31432431
+    },
+    "AuctionPool31": {
+      "address": "0x55ee21A8AAe28cAc4bd4FC3B87B0f024D7325A7b",
+      "startBlock": 31541114
+    },
+    "AuctionPool32": {
+      "address": "0x86fE290DD34C4FC0A6D9E25137e21e1868E58D8d",
+      "startBlock": 31598877
+    },
+    "AuctionPool33": {
+      "address": "0xea02A58e44f88263d506b0393d0407E21191b507",
+      "startBlock": 31636581
+    },
+    "AuctionPool34": {
+      "address": "0x59093bE8d4478c7bbE5E081414dF9E14b4A66e7F",
+      "startBlock": 31636620
+    },
+    "AuctionPool35": {
+      "address": "0xa798a10Ad74be1244821CdC85d219221E9390f38",
+      "startBlock": 31655990
+    },
+    "AuctionPool36": {
+      "address": "0x365e441c5d4D8eb4B5a6D881bD9160269a7C490D",
+      "startBlock": 31661781
+    },
+    "AuctionPool37": {
+      "address": "0x970Cbda736459f30B6Da53924ec4d368Da61c105",
+      "startBlock": 31754465
+    },
+    "AuctionPool38": {
+      "address": "0xdee32894328a3c9EC16527EDEE7216A10112Ce29",
+      "startBlock": 31881084
+    },
+    "AuctionPool39": {
+      "address": "0xD99dcB37b165ac2675C6F6D4877c34dFD3e224B3",
+      "startBlock": 31881120
+    },
+    "AuctionPool40": {
+      "address": "0x924FA2e76E5b7f4A3482B5f2847d070E3aA82B6a",
+      "startBlock": 31881249
+    },
+    "AuctionPool41": {
+      "address": "0x809685C147840008b4De064d34d4Db5900DB7A38",
+      "startBlock": 32335401
+    },
+    "AuctionPool42": {
+      "address": "0x09AFE93373B20a9A51a7BD5460f899F9268E9681",
+      "startBlock": 32335442
+    },
+    "AuctionPool43": {
+      "address": "0x084EbC0322eDc460ac41c2e9038Bbe4Ec5b1aD5f",
+      "startBlock": 32335507
+    },
+    "AuctionPool44": {
+      "address": "0x14a47B32c5D06f386F016A1fB9F15bd94538113b",
+      "startBlock": 32340291
+    },
+    "AuctionPool45": {
+      "address": "0xA6a21D411787Aa8Fa7D36aB7cEB50ec276E43092",
+      "startBlock": 32340882
+    },
+    "AuctionPool46": {
+      "address": "0x46D207fe0d107419D8630617fC3F7036D01329C9",
+      "startBlock": 32734057
+    },
+    "AuctionPool47": {
+      "address": "0x04B502f70B104B60e3d7D394016fc6e5a8611d3a",
+      "startBlock": 32738664
+    },
+    "AuctionPool48": {
+      "address": "0x285880F2C564Efab77bAd82cC2c78891FA6dc167",
+      "startBlock": 32738704
+    },
+    "AuctionPool49": {
+      "address": "0x4Bc1AD40CE673065381eA47905C03F96C3ED08e0",
+      "startBlock": 32740490
+    },
+    "AuctionPool50": {
+      "address": "0x4E04bF7BdA23B80F279fb81ACfff168e0f3a7485",
+      "startBlock": 32779576
+    },
+    "AuctionPool51": {
+      "address": "0x6e2543545f44CE446c246a34e5A31025ec45B26f",
+      "startBlock": 32780932
+    }
+  }
+}

@@ -1,0 +1,31 @@
+type Platform @entity(immutable: false) {
+  id: ID! # platform
+  total_players: BigInt! # uint256
+  total_bids_placed: BigInt! # uint256
+  total_auctions_closed: BigInt! # uint256
+}
+
+type Auction @entity(immutable: false) {
+  id: ID!
+  poolAddress: Bytes!
+  bidListId: BigInt!
+  bidsPlaced: BigInt! # Total non-bonus bids placed
+}
+
+type User @entity(immutable: false) {
+  id: Bytes! #address
+  first_bid_timestamp: BigInt!
+  last_bid_timestamp: BigInt!
+  total_bids: BigInt! # uint256
+  last_bid_tx_hash: Bytes!
+}
+
+type Bid @entity {
+  id: ID!
+  poolAddress: Bytes!
+  bidListId: BigInt!
+  bidId: BigInt!
+  bidder: Bytes!
+  timestamp: BigInt!
+  txHash: Bytes!
+}

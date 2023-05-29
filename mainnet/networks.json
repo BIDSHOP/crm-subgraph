@@ -1,0 +1,52 @@
+{
+  "matic": {
+    "AuctionPool1": {
+      "address": "0x77BA374f64C78a6659FCeDB6695dC02fDC91776b",
+      "startBlock": 40530561
+    },
+    "AuctionPool2": {
+      "address": "0xdFfbbabB3c2D4D7942a73d2FC37EF638b8661AF9",
+      "startBlock": 40633921
+    },
+    "AuctionPool3": {
+      "address": "0xaa03D068340F5b9d8eeEC8A6c0f78F481Ff7F440",
+      "startBlock": 40637507
+    },
+    "AuctionPool4": {
+      "address": "0x37dD0273d816E7517D905Ab04cae37C6D8a73c4C",
+      "startBlock": 40637658
+    },
+    "AuctionPool5": {
+      "address": "0xe48AeE8acB4D6Ed340Fbb7EAc1D54FE913c7ba22",
+      "startBlock": 40637755
+    },
+    "AuctionPool6": {
+      "address": "0x6300c1204a3aA0627Ea57786E248d2E6a3D609e0",
+      "startBlock": 40637803
+    },
+    "AuctionPool7": {
+      "address": "0x1bd3ac5990C25B79b54E84859a4B453062BA94C1",
+      "startBlock": 40637929
+    },
+    "AuctionPool8": {
+      "address": "0x13789A9C9B2aCfCBf40d87C9d8d94BD590005196",
+      "startBlock": 40676247
+    },
+    "AuctionPool9": {
+      "address": "0xbc0659125Cac63aD800122181706Ba211243Ecd5",
+      "startBlock": 40678256
+    },
+    "AuctionPool10": {
+      "address": "0x401E3787c07cB4c203d6B8813fAa6B91cF607cDd",
+      "startBlock": 40934156
+    },
+    "AuctionPool11": {
+      "address": "0xb5DAD906c9feB9E54692696388578b44846df3Dc",
+      "startBlock": 41332052
+    },
+    "AuctionPool12": {
+      "address": "0x2c4cDdd4a8F0Ae2eDdB92E5CB7DD32A0b03Bbcb9",
+      "startBlock": 42290036
+    }
+  }
+}
