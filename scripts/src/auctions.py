@@ -149,3 +149,4 @@ if __name__ == '__main__':
     auctions_dict = get_auction_data()
 
     print(auctions_dict)
+    print(len(auctions_dict))
