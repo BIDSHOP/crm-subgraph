@@ -9,7 +9,7 @@ SCRIPT_DIR = Path(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(str(SCRIPT_DIR.parent))
 
 db_engine = create_engine(
-    'mysql+pymysql://doadmin:AVNS_arVQyAivwzDxbsxFPUC@db-mysql-ams3-social-do-user-12235098-0.b.db.ondigitalocean.com:25060/defaultdb',
+    '',
     pool_pre_ping=True,
     pool_size=15,
     max_overflow=15
