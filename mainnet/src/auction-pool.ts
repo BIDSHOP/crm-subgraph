@@ -5,7 +5,7 @@ import {
 import { Auction, Bid, Platform, User } from "../generated/schema";
 
 export function handlePlayerBid(event: PlayerBidEvent): void {
-  if (isBotWallet(event.params.bidder))
+  if (isTeamWallet(event.params.bidder))
     return
 
   const platform = getPlatform()
@@ -26,7 +26,23 @@ export function handlePlayerBid(event: PlayerBidEvent): void {
   bid.save()
 }
 
-function isBotWallet(walletAddress: Address): bool {
+export function handleRoundFinalized(event: RoundFinalized): void {
+  const platform = getPlatform()
+
+  platform.total_auctions_closed = platform.total_auctions_closed.plus(BigInt.fromI32(1))
+
+  platform.save()
+}
+
+export function handleRankedRoundFinalized(event: RoundFinalized1): void {
+  const platform = getPlatform()
+
+  platform.total_auctions_closed = platform.total_auctions_closed.plus(BigInt.fromI32(1))
+
+  platform.save()
+}
+
+function isTeamWallet(walletAddress: Address): bool {
   if (
     walletAddress.equals(Address.fromString('0x6292D674a4E8B3bF04B593A6D4723a5e06a9a0cE')) ||
     walletAddress.equals(Address.fromString('0x629ae6A17d2DFF9da257e1064cac96786991a475')) ||
@@ -105,20 +121,4 @@ function getUser(
   user.save()
 
   return user
-}
-
-export function handleRoundFinalized(event: RoundFinalized): void {
-  const platform = getPlatform()
-
-  platform.total_auctions_closed = platform.total_auctions_closed.plus(BigInt.fromI32(1))
-
-  platform.save()
-}
-
-export function handleRankedRoundFinalized(event: RoundFinalized1): void {
-  const platform = getPlatform()
-
-  platform.total_auctions_closed = platform.total_auctions_closed.plus(BigInt.fromI32(1))
-
-  platform.save()
 }

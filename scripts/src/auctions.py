@@ -33,6 +33,20 @@ def get_auction_data() -> dict:
             res = res['auctionBidLists']
 
             for auction in res:
+                unique_bidders = get_unique_bidders(
+                    int(auction['chainId']),
+                    auction['factoryAddress'],
+                    int(auction['poolId']),
+                    int(auction['bidListId'])
+                )
+
+                auction_winners = get_auction_winners(
+                    int(auction['chainId']),
+                    auction['factoryAddress'],
+                    int(auction['poolId']),
+                    int(auction['bidListId'])
+                )
+
                 insert_auction(
                     auctions_dict,
                     int(auction['chainId']),
@@ -42,9 +56,9 @@ def get_auction_data() -> dict:
                     int(auction['startTime']),
                     int(auction['endTime']),
                     int(auction['totalPrizes']),
-                    0,
+                    unique_bidders,
                     int(auction['bidsPlaced']),
-                    []
+                    auction_winners
                 )
 
             if len(res) < MAX_RESPONSE_SIZE:
@@ -65,30 +79,58 @@ def get_unique_bidders(
 ) -> int:
     try:
         unique_bidders = 0
-        last_user = '0x0000000000000000000000000000000000000000'
+        last_id = ''
 
         while True:
             query = '''
                 {
-                    bidListPlayeds(first: %d, where: {chainId: "%d", factoryAddress: "%s", poolId: "%d", bidListId: "%d", user_gt: "%s"}) {
+                    bidlistPlayeds(first: %d, where: {chain_id: "%d", factory_address: "%s", pool_id: "%d", bidlist_id: "%d", id_gt: "%s"}) {
                         id
                     }
                 }
-            ''' % (MAX_RESPONSE_SIZE, chain_id, factory_address, pool_id, bid_list_id, last_user)
+            ''' % (MAX_RESPONSE_SIZE, chain_id, factory_address, pool_id, bid_list_id, last_id)
 
             res = query_subgraph(query)
-            res = res['bidListPlayeds']
+            res = res['bidlistPlayeds']
 
             unique_bidders += len(res)
 
             if len(res) < MAX_RESPONSE_SIZE:
                 break
 
-            last_user = res[-1]['user']
+            last_id = res[-1]['id']
         
         return unique_bidders
     except Exception as e:
         print(f'Error getting unique bidders: {e}')
+        raise e
+
+def get_auction_winners(
+    chain_id: int,
+    factory_address: str,
+    pool_id: int,
+    bid_list_id: int
+) -> list:
+    try:
+        auction_winners = []
+
+        query = '''
+            {
+                auctionWons(first: %d, where: {chainId: "%d", factoryAddress: "%s", poolId: "%d", bidlistId: "%d"}) {
+                    user
+                }
+            }
+        ''' % (MAX_RESPONSE_SIZE, chain_id, factory_address, pool_id, bid_list_id)
+
+        res = query_subgraph(query)
+
+        for user in res['auctionWons']:
+            if user not in auction_winners:
+                auction_winners.append(user['user'])
+    
+        return auction_winners
+    except Exception as e:
+        print(f'Error getting auction winners: {e}')
         raise e
 
 def query_subgraph(query: str) -> dict:
@@ -133,7 +175,7 @@ def insert_auction(
         duration = (end_timestamp - start_timestamp) // (60 * 60)
 
         auctions_dict[auction_id] = {
-            'start_date': f'{start_dt.day}/{start_dt.month}/{start_dt.year}',
+            'start_date': f'{start_dt.month}/{start_dt.day}/{start_dt.year}',
             'start_time': f'{start_dt.hour}:{start_dt.minute}:{start_dt.second}',
             'duration': duration,
             'prize': prize,
@@ -145,8 +187,20 @@ def insert_auction(
         print(f'Error inserting auction: {e}')
         raise e
 
+def generate_csv(auctions_dict: dict) -> None:
+    try:
+        with open('./auctions.csv', 'w', encoding="utf-8") as f:
+            writer = csv.writer(f, lineterminator='\n')
+
+            writer.writerow(['Auction ID', 'Start Date', 'Start Time', 'Duration', 'Total Prizes', 'Unique Bidders', 'Bids Placed', 'Winners'])
+
+            for auction_id, data in auctions_dict.items():
+                writer.writerow([auction_id, data['start_date'], data['start_time'], data['duration'], data['prize'] // (10 ** 18), data['unique_bidders'], data['bids_placed'], data['winners']])
+    except Exception as e:
+        print(f'Error generating csv file: {e}')
+        raise e
+
 if __name__ == '__main__':
     auctions_dict = get_auction_data()
 
-    print(auctions_dict)
-    print(len(auctions_dict))
+    generate_csv(auctions_dict)
