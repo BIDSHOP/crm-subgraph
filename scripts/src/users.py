@@ -3,7 +3,8 @@ from time import sleep
 import requests
 import csv
 
-SUBGRAPH_URL = 'https://api.thegraph.com/subgraphs/name/bidshop/bidshop-beta'
+NETWORK = 'mainnet'
+SUBGRAPH_URL = f'https://api.thegraph.com/subgraphs/name/spencermiller23/bidshop-crm-{NETWORK}'
 MAX_RESPONSE_SIZE = 1000
 MAX_RETRIES = 10
 
@@ -134,7 +135,7 @@ def get_discord_username(wallet_address: str) -> str:
 
 def generate_csv(users_dict: dict) -> None:
     try:
-        with open('./users.csv', 'w', encoding="utf-8") as f:
+        with open(f'./{NETWORK}_users.csv', 'w', encoding="utf-8") as f:
             writer = csv.writer(f, lineterminator='\n')
 
             writer.writerow(['Wallet', 'Discord', 'Auctions Played', 'Auctions Won', 'Bids Placed', 'Average Bids Per Auction Played', 'Total Winnings'])

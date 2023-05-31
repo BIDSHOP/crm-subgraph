@@ -3,6 +3,7 @@ type Platform @entity(immutable: false) {
   total_players: BigInt! # uint256
   total_bids_placed: BigInt! # uint256
   total_auctions_closed: BigInt! # uint256
+  factories: BigInt!
 }
 
 type Auction @entity(immutable: false) {
@@ -10,6 +11,9 @@ type Auction @entity(immutable: false) {
   poolAddress: Bytes!
   bidListId: BigInt!
   bidsPlaced: BigInt! # Total non-bonus bids placed
+  startTime: BigInt!
+  endTime: BigInt!
+  totalPrizes: BigInt!
 }
 
 type User @entity(immutable: false) {
@@ -18,6 +22,8 @@ type User @entity(immutable: false) {
   last_bid_timestamp: BigInt!
   total_bids: BigInt! # uint256
   last_bid_tx_hash: Bytes!
+  auctions_played_count: BigInt!
+  total_rewards: BigInt!
 }
 
 type Bid @entity {
@@ -28,4 +34,31 @@ type Bid @entity {
   bidder: Bytes!
   timestamp: BigInt!
   txHash: Bytes!
+}
+
+type BidlistPlayed @entity(immutable: false) {
+  id: ID!
+  user: Bytes!
+  pool_address: Bytes!
+  bidlist_id: BigInt!
+}
+
+type AuctionWon @entity(immutable: false) {
+  id: ID!
+  poolAddress: Bytes!
+  bidlistId: BigInt!
+  roundId: BigInt!
+  rank: BigInt!
+  reward: BigInt!
+  user: Bytes!
+}
+
+type RankRevealedEvent @entity(immutable: false) {
+  id: ID!
+  bidListId: BigInt!
+  poolAddress: Bytes!
+  rank: BigInt!
+  reward: BigInt!
+  roundId: BigInt!
+  user: Bytes!
 }

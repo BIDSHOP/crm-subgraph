@@ -27,6 +27,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool2
@@ -53,6 +55,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool3
@@ -79,6 +83,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool4
@@ -105,6 +111,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool5
@@ -131,6 +139,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool6
@@ -157,6 +167,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool7
@@ -183,6 +195,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool8
@@ -209,6 +223,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool9
@@ -235,6 +251,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool10
@@ -261,6 +279,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool11
@@ -287,6 +307,8 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts
   - kind: ethereum
     name: AuctionPool12
@@ -313,4 +335,6 @@ dataSources:
           handler: handleRoundFinalized
         - event: RoundFinalized(indexed uint256,indexed uint256,uint256)
           handler: handleRankedRoundFinalized
+        - event: RankRevealed(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleRankRevealed
       file: ./src/auction-pool.ts

@@ -1,8 +1,9 @@
 import { Address, BigInt, Bytes } from "@graphprotocol/graph-ts";
 import {
-  PlayerBid as PlayerBidEvent, RoundFinalized, RoundFinalized1
+  AuctionPool,
+  PlayerBid as PlayerBidEvent, RankRevealed, RoundFinalized, RoundFinalized1
 } from "../generated/AuctionPool1/AuctionPool"
-import { Auction, Bid, Platform, User } from "../generated/schema";
+import { Auction, AuctionWon, Bid, BidlistPlayed, Platform, User } from "../generated/schema";
 
 export function handlePlayerBid(event: PlayerBidEvent): void {
   if (isTeamWallet(event.params.bidder))
@@ -10,7 +11,7 @@ export function handlePlayerBid(event: PlayerBidEvent): void {
 
   const platform = getPlatform()
 
-  const auction = getAuction(event.address, event.params.bidListId)
+  const auction = getAuction(event.address, event.params.bidListId, event.block.timestamp)
 
   const user = getUser(platform, event.params.bidder, event.block.timestamp, event.transaction.hash)
 
@@ -24,17 +25,66 @@ export function handlePlayerBid(event: PlayerBidEvent): void {
   bid.txHash = event.transaction.hash
 
   bid.save()
+
+  const bidListPlayed = getBidListPlayed(
+    user,
+    event.address,
+    event.params.bidListId,
+    event.params.bidder
+  )
 }
 
-export function handleRoundFinalized(event: RoundFinalized): void {
+export function handleRoundFinalized(event: RoundFinalized1): void {
   const platform = getPlatform()
 
   platform.total_auctions_closed = platform.total_auctions_closed.plus(BigInt.fromI32(1))
 
   platform.save()
+
+  const auctionWon = new AuctionWon(event.transaction.hash.toHex() + "-" + event.logIndex.toString())
+
+  auctionWon.poolAddress = event.address
+  auctionWon.bidlistId = event.params.bidListId
+  auctionWon.roundId = event.params.roundId
+  auctionWon.rank = BigInt.fromI32(1)
+  auctionWon.reward = BigInt.fromI32(0)
+  auctionWon.user = event.params.winner
+
+  auctionWon.save()
 }
 
-export function handleRankedRoundFinalized(event: RoundFinalized1): void {
+export function handleRankRevealed(event: RankRevealed): void {
+  let user = User.load(event.params.user)
+  
+  if (user == null)
+    return
+  
+  user.total_rewards = user.total_rewards.plus(event.params.reward)
+
+  user.save()
+
+  let auction = Auction.load(`${event.address}-${event.params.bidListId}`)
+
+  if (auction == null)
+    return
+
+  auction.totalPrizes = auction.totalPrizes.plus(event.params.reward)
+  
+  auction.save()
+
+  const auctionWon = new AuctionWon(event.transaction.hash.toHex() + "-" + event.logIndex.toString())
+
+  auctionWon.poolAddress = event.address
+  auctionWon.bidlistId = event.params.bidListId
+  auctionWon.roundId = event.params.roundId
+  auctionWon.rank = event.params.rank
+  auctionWon.reward = event.params.reward
+  auctionWon.user = event.params.user
+
+  auctionWon.save()
+}
+
+export function handleRankedRoundFinalized(event: RoundFinalized): void {
   const platform = getPlatform()
 
   platform.total_auctions_closed = platform.total_auctions_closed.plus(BigInt.fromI32(1))
@@ -65,6 +115,7 @@ function getPlatform(): Platform {
     platform.total_players = BigInt.fromI32(0)
     platform.total_bids_placed = BigInt.fromI32(0)
     platform.total_auctions_closed = BigInt.fromI32(0)
+    platform.factories = BigInt.fromI32(0)
   }
   
   platform.total_bids_placed = platform.total_bids_placed.plus(BigInt.fromI32(1))
@@ -76,7 +127,8 @@ function getPlatform(): Platform {
 
 function getAuction(
   poolAddress: Address,
-  bidListId: BigInt
+  bidListId: BigInt,
+  startTime: BigInt
 ): Auction {
   let auction = Auction.load(`${poolAddress.toHexString()}-${bidListId}`)
 
@@ -86,6 +138,12 @@ function getAuction(
     auction.poolAddress = poolAddress
     auction.bidListId = bidListId
     auction.bidsPlaced = BigInt.fromI32(0)
+    auction.startTime = startTime
+
+    const roundDuration = getRoundDuration(poolAddress)
+
+    auction.endTime = auction.startTime.plus(roundDuration)
+    auction.totalPrizes = BigInt.fromI32(0)
   }
 
   auction.bidsPlaced = auction.bidsPlaced.plus(BigInt.fromI32(1))
@@ -108,6 +166,8 @@ function getUser(
 
     user.first_bid_timestamp = timestamp
     user.total_bids = BigInt.fromI32(0)
+    user.auctions_played_count = BigInt.fromI32(0)
+    user.total_rewards = BigInt.fromI32(0)
 
     platform.total_players = platform.total_players.plus(BigInt.fromI32(1))
 
@@ -121,4 +181,43 @@ function getUser(
   user.save()
 
   return user
+}
+
+function getBidListPlayed(
+  user: User,
+  poolAddress: Address,
+  bidListId: BigInt,
+  walletAddress: Address
+): BidlistPlayed {
+  const bidListPlayedId = `${poolAddress.toHexString()}-${bidListId}-${walletAddress.toHexString()}`
+
+  let bidListPlayed = BidlistPlayed.load(bidListPlayedId)
+
+  if (bidListPlayed == null) {
+    user.auctions_played_count = user.auctions_played_count.plus(BigInt.fromI32(1))
+
+    user.save()
+
+    bidListPlayed = new BidlistPlayed(bidListPlayedId)
+
+    bidListPlayed.user = walletAddress
+    bidListPlayed.pool_address = poolAddress
+    bidListPlayed.bidlist_id = bidListId
+  }
+
+  bidListPlayed.save()
+
+  return bidListPlayed
+}
+
+function getRoundDuration(poolAddress: Address): BigInt {
+  const auctionPoolContract = AuctionPool.bind(poolAddress)
+
+  const roundDuration = auctionPoolContract.try_roundDuration()
+  
+  if (!roundDuration.reverted) {
+    return roundDuration.value
+  } else {
+    return BigInt.fromI32(0)
+  }
 }

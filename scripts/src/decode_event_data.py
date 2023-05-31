@@ -14,7 +14,7 @@ EVENT_DATA_LIST = [
 PLAYER_BID_EVENT_SIGNATURE_HASH = '0xa09dd32955694000e96fcafeba044b4dbd4850f23f8ab83a94833731fc9e947f'
 
 ## UNCOMMENT TO USE THE SAMPLE PROVIDED
-## Data taken from https://polygonscan.com/tx/0x3ae683c332adf08772296ad4be2c78f2041b64ba962053e97f7a2dc8fc8a6f8d#eventlog
+## Data taken from https://polygonscan.com/tx/0x3ae683c332adf08772296ad4be2c78f2041b64ba962053e97f7a2dc8fc8a6f8d#eventlog (see event #106)
 
 # EVENT_TOPIC_LIST = [
 #     '0xa09dd32955694000e96fcafeba044b4dbd4850f23f8ab83a94833731fc9e947f',

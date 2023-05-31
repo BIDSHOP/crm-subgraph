@@ -3,7 +3,8 @@ import requests
 import datetime
 import csv
 
-SUBGRAPH_URL = 'https://api.thegraph.com/subgraphs/name/bidshop/bidshop-beta'
+NETWORK = 'mainnet'
+SUBGRAPH_URL = f'https://api.thegraph.com/subgraphs/name/spencermiller23/bidshop-crm-{NETWORK}'
 MAX_RESPONSE_SIZE = 1000
 MAX_RETRIES = 10
 
@@ -15,11 +16,9 @@ def get_auction_data() -> dict:
         while True:
             query = '''
                 {
-                    auctionBidLists(first: %d, where: {id_gt: "%s"}) {
+                    auctions(first: %d, where: {id_gt: "%s"}) {
                         id
-                        chainId
-                        factoryAddress
-                        poolId
+                        poolAddress
                         bidListId
                         startTime
                         endTime
@@ -30,28 +29,22 @@ def get_auction_data() -> dict:
             ''' % (MAX_RESPONSE_SIZE, last_id)
 
             res = query_subgraph(query)
-            res = res['auctionBidLists']
+            res = res['auctions']
 
             for auction in res:
                 unique_bidders = get_unique_bidders(
-                    int(auction['chainId']),
-                    auction['factoryAddress'],
-                    int(auction['poolId']),
+                    auction['poolAddress'],
                     int(auction['bidListId'])
                 )
 
                 auction_winners = get_auction_winners(
-                    int(auction['chainId']),
-                    auction['factoryAddress'],
-                    int(auction['poolId']),
+                    auction['poolAddress'],
                     int(auction['bidListId'])
                 )
 
                 insert_auction(
                     auctions_dict,
-                    int(auction['chainId']),
-                    auction['factoryAddress'],
-                    int(auction['poolId']),
+                    auction['poolAddress'],
                     int(auction['bidListId']),
                     int(auction['startTime']),
                     int(auction['endTime']),
@@ -72,9 +65,7 @@ def get_auction_data() -> dict:
         raise e
 
 def get_unique_bidders(
-    chain_id: int,
-    factory_address: str,
-    pool_id: int,
+    pool_address: str,
     bid_list_id: int
 ) -> int:
     try:
@@ -84,11 +75,11 @@ def get_unique_bidders(
         while True:
             query = '''
                 {
-                    bidlistPlayeds(first: %d, where: {chain_id: "%d", factory_address: "%s", pool_id: "%d", bidlist_id: "%d", id_gt: "%s"}) {
+                    bidlistPlayeds(first: %d, where: {pool_address: "%s", bidlist_id: "%d", id_gt: "%s"}) {
                         id
                     }
                 }
-            ''' % (MAX_RESPONSE_SIZE, chain_id, factory_address, pool_id, bid_list_id, last_id)
+            ''' % (MAX_RESPONSE_SIZE, pool_address, bid_list_id, last_id)
 
             res = query_subgraph(query)
             res = res['bidlistPlayeds']
@@ -106,9 +97,7 @@ def get_unique_bidders(
         raise e
 
 def get_auction_winners(
-    chain_id: int,
-    factory_address: str,
-    pool_id: int,
+    pool_address: str,
     bid_list_id: int
 ) -> list:
     try:
@@ -116,11 +105,11 @@ def get_auction_winners(
 
         query = '''
             {
-                auctionWons(first: %d, where: {chainId: "%d", factoryAddress: "%s", poolId: "%d", bidlistId: "%d"}) {
+                auctionWons(first: %d, where: {poolAddress: "%s", bidlistId: "%d"}) {
                     user
                 }
             }
-        ''' % (MAX_RESPONSE_SIZE, chain_id, factory_address, pool_id, bid_list_id)
+        ''' % (MAX_RESPONSE_SIZE, pool_address, bid_list_id)
 
         res = query_subgraph(query)
 
@@ -153,9 +142,7 @@ def query_subgraph(query: str) -> dict:
 
 def insert_auction(
     auctions_dict: dict,
-    chain_id: int,
-    factory_address: str,
-    pool_id: int,
+    pool_address: str,
     bid_list_id: int,
     start_timestamp: int,
     end_timestamp: int,
@@ -165,7 +152,7 @@ def insert_auction(
     winners: list
 ) -> None:
     try:
-        auction_id = f'{chain_id}-{factory_address}-{pool_id}-{bid_list_id}'
+        auction_id = f'{pool_address}-{bid_list_id}'
         
         if auction_id in auctions_dict.keys():
             return
@@ -189,7 +176,7 @@ def insert_auction(
 
 def generate_csv(auctions_dict: dict) -> None:
     try:
-        with open('./auctions.csv', 'w', encoding="utf-8") as f:
+        with open(f'./{NETWORK}_auctions.csv', 'w', encoding="utf-8") as f:
             writer = csv.writer(f, lineterminator='\n')
 
             writer.writerow(['Auction ID', 'Start Date', 'Start Time', 'Duration', 'Total Prizes', 'Unique Bidders', 'Bids Placed', 'Winners'])
